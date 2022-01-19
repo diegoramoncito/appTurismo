@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>Prefectura</title>
+        <link rel="stylesheet" type="text/css" href="frameworks/style.css">
+        <script type="text/javascript" src="frameworks/jquery-3.4.0.min.js"></script>
+    </head>
+    <body>
+        
+        <div class="login-page">
+            <div class="form">
+                
+                <input type="text" id="username" placeholder="username" />
+                <input type="password" id="password" placeholder="password" />
+                <button id="login" type="button" onclick="login()">Login</button></br>
+                
+            </div>
+        </div>
+    </body>
+    <script>
+        function login() {
+            if ($("#username").val() == "admin" && $("#password").val() == "password") {
+                window.location.replace("datos.html");
+            } else {
+                alert("You are not a valid user");
+            }
+        }
+    </script>
+</html>
