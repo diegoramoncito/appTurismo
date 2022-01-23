@@ -1,7 +1,7 @@
 <?php
 
 function query($query) {
-    $conn = pg_connect("host=10.0.1.50 port=5432 dbname=appturismo user=prefectura password=1234") or die('{"status":"failure","message":"Por favor contacte al administrador"}'); //' . str_replace(array("\r\n", "\n", "\r", '"'), '', pg_last_error()).'"}');
+    $conn = pg_connect("host=localhost port=5432 dbname=appturismo user=prefectura password=1234") or die('{"status":"failure","message":"Por favor contacte al administrador"}'); //' . str_replace(array("\r\n", "\n", "\r", '"'), '', pg_last_error()).'"}');
     pg_set_client_encoding($conn, "UNICODE");
     $result = pg_query($conn, $query) or die('{"status":"failure","message":"Por favor comuniquese con el administrador"}'); //' . str_replace(array("\r\n", "\n", "\r", '"'), '', pg_last_error()) .'"}');
 
