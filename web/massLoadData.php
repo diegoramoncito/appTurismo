@@ -21,7 +21,7 @@ for($i=2; $i<=$nr; $i++){
     $calificacion=$xls_data[$i]['D'];
     $titulo=$xls_data[$i]['E'];
     $subtitulo=$xls_data[$i]['F'];
-    $description=$xls_data[$i]['G'];
+    $descripcion=$xls_data[$i]['G'];
     $temperatura=$xls_data[$i]['H'];
     $dificultad=$xls_data[$i]['I'];
     $presupuesto=$xls_data[$i]['J'];
@@ -43,7 +43,7 @@ for($i=2; $i<=$nr; $i++){
         $elementoDestino = $sampleEvento;
     
     $elementDestino->tipo=$tipo;
-    $elementDestino->calificaion=$calificacion;
+    $elementDestino->calificacion=doubleval($calificacion);
     $elementDestino->titulo=$titulo;
     $elementDestino->subtitulo=$subtitulo;
     $elementDestino->descripcion=$descripcion;

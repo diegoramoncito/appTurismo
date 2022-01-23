@@ -29,6 +29,7 @@ $destinos = json_decode(query("select * from destino"));
 <label class="custom-file-label" for="customFile">Subir archivo excel</label>
 <button class="btn btn-info" type="submit">Cargar</button>
 </form>
+<br />
 </div>
 </div></div>
 <div class="section">
@@ -37,7 +38,8 @@ $destinos = json_decode(query("select * from destino"));
           <thead>
             <tr>
               <th scope="col">Actiones</th>
-              <th scope="col">Título</th>
+<th scope="col">Tipo</th>
+<th scope="col">Título</th>
               <th scope="col">Canton</th>
               <th scope="col">Parroquia</th>
             </tr>
@@ -52,9 +54,10 @@ foreach ($destinos as $elemento) {
             <tr>
               <th scope="row">
                   <a href="detalle.php?id=<?php echo $elemento->id; ?>" class="btn btn-default btn-info" style="text-shadow: none;!important">Editar</a>
-                  <a href="#" class="btn btn-default btn-danger" style="text-shadow: none;!important">Eliminar</a>
+                  <!--a href="#" class="btn btn-default btn-danger" style="text-shadow: none;!important">Eliminar</a-->
               </th>
-              <td><?php echo $individual->titulo; ?></td>
+    <td><?php echo $individual->tipo; ?></td>
+    <td><?php echo $individual->titulo; ?></td>
               <td><?php echo $individual->canton; ?></td>
               <td><?php echo $individual->parroquia; ?></td>
             </tr>

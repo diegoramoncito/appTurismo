@@ -71,10 +71,10 @@ function getNavBar(){
     </li>
 
     </ul>
-    <form class="d-flex">
+<!--    <form class="d-flex">
     <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
     <button class="btn btn-outline-success" type="submit">Filtrar</button>
-    </form>
+    </form> -->
     </div>
     </div>
     </nav>';
@@ -83,7 +83,6 @@ function getNavBar(){
 function getTipo($nombre){
     if (strContains(strtoupper($nombre), strtoupper('arquitectura'))) return 1;
     return 1;
-    
 }
 
 function getUrlLeyenda($url){
@@ -96,6 +95,56 @@ function getUrlLeyenda($url){
 function strContains($haystack, $needle){
     if (strpos($haystack, $needle) !== false) return true;
     else return false;
+}
+
+function uploadFile($target,$file,$extension){
+    if (!file_exists($target)) {
+        mkdir($target, 0777, true);
+    }
+    $contents = scan_dir($target);
+    if($contents != false ){
+        if(count($contents)<5){
+            $total = count($contents) +1;
+            move_uploaded_file($file, $target."/$total.".$extension);
+        }else{
+            unlink($target."/".$contents[0]);
+            $cont=1;
+            for($i=1;$i<5;$i++){
+                $nam=pathinfo($target."/".$contents[$i]);
+                rename($target."/".$contents[$i],$target."/$i.".$nam['extension']);
+            }
+            move_uploaded_file($file, $target."/5.".$extension);
+        }
+    }else{
+        move_uploaded_file($file, $target."/1.".$extension);
+    }
+}
+
+function scan_dir($dir) {
+    $ret = array();
+    foreach( array_diff(scandir($dir), array('..', '.')) as $element ) {
+        array_push($ret,$element);
+    }
+    return $ret;
+}
+function scan_dir_sort($dir) {
+    $ignored = array('.', '..', '.svn', '.htaccess');
+    $files = array();
+    foreach (scandir($dir) as $file) {
+        if (in_array($file, $ignored)) continue;
+        $files[$file] = filemtime($dir . '/' . $file);
+    }
+    arsort($files);
+    $files = array_keys($files);
+    return ($files) ? $files : false;
+}
+function getFilesArray($dir){
+    $actual_link = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[HTTP_HOST]";//$_SERVER[REQUEST_URI]";
+    $ret = array();
+    foreach(scan_dir($dir) as $ind){
+        array_push($ret,$actual_link."/".$dir.$ind);
+    }
+    return $ret;
 }
 
 ?>

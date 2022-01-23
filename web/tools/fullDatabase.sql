@@ -5,7 +5,7 @@
 --create database
 --CREATE DATABASE appturismo;
 --enable postgis
---CREATE EXTENSION postgis;
+CREATE EXTENSION postgis;
 
 --Drop all tables before creating again
 DROP TABLE IF EXISTS ReporteHistorico CASCADE;
