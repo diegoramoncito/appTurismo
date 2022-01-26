@@ -56,10 +56,10 @@ foreach ($destinos as $elemento) {
                   <a href="detalle.php?id=<?php echo $elemento->id; ?>" class="btn btn-default btn-info" style="text-shadow: none;!important">Editar</a>
                   <!--a href="#" class="btn btn-default btn-danger" style="text-shadow: none;!important">Eliminar</a-->
               </th>
-    <td><?php echo $individual->tipo; ?></td>
-    <td><?php echo $individual->titulo; ?></td>
-              <td><?php echo $individual->canton; ?></td>
-              <td><?php echo $individual->parroquia; ?></td>
+                <td><?php echo $elemento->tipo; ?></td>
+                <td><?php echo $individual->titulo; ?></td>
+                <td><?php echo $individual->canton; ?></td>
+                <td><?php echo $individual->parroquia; ?></td>
             </tr>
 <?php } ?>
           </tbody>

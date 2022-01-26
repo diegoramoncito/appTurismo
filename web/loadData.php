@@ -7,8 +7,13 @@ require_once("frameworks/xls/vendor/autoload.php");
 //$elementDestino = json_decode('{"calificacion": 4, "titulo": "Iglesia", "subtitulo": "Quito", "descripcion": "Iglesia ", "temperatura": "14ºC", "dificultad": "Baja", "presupuesto": "5$", "fotos": [ "https://www.quito-turismo.gob.ec/wp-content/uploads/2021/04/02_04-EL-UNIVERSO-2-1-1024x378.jpg" ], "actividades": [ { "tipo": 1, "leyenda": "Arte y arquitectura" }], "servicios": [ { "tipo": 5, "leyenda": "Alojamiento" }], "links": [ { "tipo": 1, "url": "https://www.tripadvisor.com", "leyenda": "TripAdvisor" }], "telefono": "+593", "comentario": "Rut", "canton":"quito", "parroquia":"San antonio" }');
 
 $idDestino = $_GET['id'];
-$destino = json_decode(query("select * from destino where id = $idDestino"));
-$elementDestino = json_decode($destino[0]->info);
+if($idDestino!=""){
+    $destino = json_decode(query("select * from destino where id = $idDestino"));
+    $elementDestino = json_decode($destino[0]->info);
+}else{
+    $elementDestino = json_decode('{"calificacion": 4, "titulo": "Iglesia", "subtitulo": "Quito", "descripcion": "Iglesia ", "temperatura": "14ºC", "dificultad": "Baja", "presupuesto": "5$", "fotos": [ "https://www.quito-turismo.gob.ec/wp-content/uploads/2021/04/02_04-EL-UNIVERSO-2-1-1024x378.jpg" ], "actividades": [ { "tipo": 1, "leyenda": "Arte y arquitectura" }], "servicios": [ { "tipo": 5, "leyenda": "Alojamiento" }], "links": [ { "tipo": 1, "url": "https://www.tripadvisor.com", "leyenda": "TripAdvisor" }], "telefono": "+593", "comentario": "Rut", "canton":"quito", "parroquia":"San antonio" }');
+}
+
 
 //foreach($datos->actividades as $actividad){
 //    $actividades .= $actividad->leyenda.",";
@@ -62,8 +67,8 @@ $servicios=$_POST['servicios'];
 $url1=$_POST['url1'];
 $url2=$_POST['url2'];
 $url3=$_POST['url3'];
-
-//$elementDestino->tipo=$tipo;
+error_log($tipo);
+$elementDestino->tipo=$tipo;
 $elementDestino->calificacion=$calificacion;
 $elementDestino->titulo=$titulo;
 $elementDestino->subtitulo=$subtitulo;
@@ -116,10 +121,21 @@ array_push($linkLista,json_decode(json_encode($link)));
 $elementDestino->links = $linkLista;
 
 $info = json_encode($elementDestino);
-$query = "update destino set tipo = '$tipo', calificacion = $calificacion, titulo = '$titulo', ubicacion = ST_GeomFromText('POINT($lon $lat)', 4326), info = '$info' where id = $idDestino";
-crudQuery($query);
+if ($idDestino!=""){
+    $query = "update destino set tipo = '$tipo', calificacion = $calificacion, titulo = '$titulo', ubicacion = ST_GeomFromText('POINT($lon $lat)', 4326), info = '$info' where id = $id";
+    crudQuery($query);
+    $header = "Location: detalle.php?id=$idDestino";
+}else{
+    if($titulo!=""){
+        $query = "insert into destino (tipo,calificacion,titulo,ubicacion,info) values('$tipo', $calificacion,'$titulo',ST_GeomFromText('POINT($lon $lat)', 4326), '$info')";
+        crudQuery($query);
+        $header = "Location: datos.php";
+    }
+}
+//$query = "update destino set tipo = '$tipo', calificacion = $calificacion, titulo = '$titulo', ubicacion = ST_GeomFromText('POINT($lon $lat)', 4326), info = '$info' where id = $idDestino";
+//crudQuery($query);
 
-header("Location: detalle.php?id=$idDestino");
+header($header);
 
 
 ?>

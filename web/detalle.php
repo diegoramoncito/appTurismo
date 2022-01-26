@@ -3,7 +3,7 @@ date_default_timezone_set('America/Guayaquil');
 $date = date('Ymd', time());
 require("tools/toConn.php");
 $formDestination = "loadData.php";
-if(isset($_GET['id'])){
+if(isset($_GET['id']) && $_GET['id'] != ""){
     $formDestination .="?id=".$_GET['id'];
     $idDestino = $_GET['id'];
     $destino = json_decode(query("select *,ST_X(ubicacion::geometry) AS lon, st_y(ubicacion::geometry) as lat from destino where id = $idDestino"));
