@@ -139,7 +139,7 @@ function scan_dir_sort($dir) {
     return ($files) ? $files : false;
 }
 function getFilesArray($dir){
-    $actual_link = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[HTTP_HOST]";//$_SERVER[REQUEST_URI]";
+    $actual_link = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "https") . "://$_SERVER[HTTP_HOST]";//$_SERVER[REQUEST_URI]";
     $ret = array();
     foreach(scan_dir($dir) as $ind){
         array_push($ret,$actual_link."/".$dir.$ind);
