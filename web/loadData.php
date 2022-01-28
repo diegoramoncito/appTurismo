@@ -4,7 +4,7 @@ $date = date('Ymd', time());
 require_once("tools/toConn.php");
 require_once("frameworks/xls/vendor/autoload.php");
 
-//$elementDestino = json_decode('{"calificacion": 4, "titulo": "Iglesia", "subtitulo": "Quito", "descripcion": "Iglesia ", "temperatura": "14ºC", "dificultad": "Baja", "presupuesto": "5$", "fotos": [ "https://www.quito-turismo.gob.ec/wp-content/uploads/2021/04/02_04-EL-UNIVERSO-2-1-1024x378.jpg" ], "actividades": [ { "tipo": 1, "leyenda": "Arte y arquitectura" }], "servicios": [ { "tipo": 5, "leyenda": "Alojamiento" }], "links": [ { "tipo": 1, "url": "https://www.tripadvisor.com", "leyenda": "TripAdvisor" }], "telefono": "+593", "comentario": "Rut", "canton":"quito", "parroquia":"San antonio" }');
+
 
 $idDestino = $_GET['id'];
 if($idDestino!=""){
@@ -15,19 +15,7 @@ if($idDestino!=""){
 }
 
 
-//foreach($datos->actividades as $actividad){
-//    $actividades .= $actividad->leyenda.",";
-//}
-//foreach($datos->servicios as $servicio){
-//    $servicios .= $servicio->leyenda.",";
-//}
-//$fotos = $datos->fotos;
-//$url1=$datos->links[0]->url;
-//$url2=$datos->links[1]->url;
-//$url3=$datos->links[2]->url;
-
-
-$targetDirectory = "img/".$_GET['id']."/";
+$targetDirectory = "img/".$idDestino."/";
 $allowTypes = array('jpg','png','jpeg');
 $statusMsg = $errorMsg = $insertValuesSQL = $errorUpload = $errorUploadType = '';
 $fileNames = array_filter($_FILES['files']['name']);
@@ -43,6 +31,7 @@ if(!empty($fileNames)){
         }
     }
 }
+if(valNumber($idDestino)>0)
 $elementDestino->fotos = getFilesArray($targetDirectory);
 
 
@@ -58,8 +47,8 @@ $dificultad=$_POST['dificultad'];
 $presupuesto=$_POST['presupuesto'];
 $telefono=$_POST['telefono'];
 $comentario=$_POST['comentario'];
-$lat=str_replace("(", "", str_replace(")", "", $_POST['latitud']));
-$lon=str_replace("(", "", str_replace(")", "", $_POST['longitud']));
+$lat=valNumber(str_replace("(", "", str_replace(")", "", $_POST['latitud'])));
+$lon=valNumber(str_replace("(", "", str_replace(")", "", $_POST['longitud'])));
 $canton=$_POST['canton'];
 $parroquia=$_POST['parroquia'];
 $actividades=$_POST['actividades'];

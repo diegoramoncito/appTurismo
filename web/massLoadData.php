@@ -4,8 +4,8 @@ $date = date('Ymd', time());
 require_once("tools/toConn.php");
 require_once("frameworks/xls/vendor/autoload.php");
 
-$sampleDestino = json_decode('{"calificacion": 4, "titulo": "Iglesia San Francisco", "subtitulo": "Quito", "descripcion": "Iglesia de La Iglesia de San Francisco es una basílica católica que se levanta en medio del centro histórico de Quito, frente a la plaza del mismo nombre. La estructura es el conjunto arquitectónico de mayor dimensión dentro de los centros históricos de toda América, y por ello es conocido como el Escorial del Nuevo Mundo", "temperatura": "14ºC", "dificultad": "Baja", "presupuesto": "5$", "fotos": [ "https://www.quito-turismo.gob.ec/wp-content/uploads/2021/04/02_04-EL-UNIVERSO-2-1-1024x378.jpg" ], "actividades": [ { "tipo": 1, "leyenda": "Arte y arquitectura" }], "servicios": [ { "tipo": 5, "leyenda": "Alojamiento" }], "links": [ { "tipo": 1, "url": "https://www.tripadvisor.com", "leyenda": "TripAdvisor" }], "telefono": "+5939000000001", "comentario": "Ruta 56km 49", "canton":"quito", "parroquia":"San antonio" }');
-$sampleEvento = json_decode('{"calificacion": 4, "titulo": "Iglesia San Francisco", "subtitulo": "Quito", "descripcion": "Iglesia de La Iglesia de San Francisco es una basílica católica que se levanta en medio del centro histórico de Quito, frente a la plaza del mismo nombre. La estructura es el conjunto arquitectónico de mayor dimensión dentro de los centros históricos de toda América, y por ello es conocido como el Escorial del Nuevo Mundo", "temperatura": "14ºC", "dificultad": "Baja", "presupuesto": "5$", "fotos": [ "https://www.quito-turismo.gob.ec/wp-content/uploads/2021/04/02_04-EL-UNIVERSO-2-1-1024x378.jpg" ], "actividades": [ { "tipo": 1, "leyenda": "Arte y arquitectura" }], "servicios": [ { "tipo": 5, "leyenda": "Alojamiento" }], "links": [ { "tipo": 1, "url": "https://www.tripadvisor.com", "leyenda": "TripAdvisor" }], "telefono": "+5939000000001", "comentario": "Ruta 56km 49", "canton":"quito", "parroquia":"San antonio","destinos":[]}');
+$sampleDestino = json_decode('{"calificacion": 4, "titulo": "I", "subtitulo": "Q", "descripcion": "I", "temperatura": "1", "dificultad": "B", "presupuesto": "5$", "fotos": [ "https://appturismo.pichincha.gob.ec/img/1/1.jpg" ], "actividades": [ { "tipo": 1, "leyenda": "Arte" }], "servicios": [ { "tipo": 5, "leyenda": "Alojamiento" }], "links": [ { "tipo": 1, "url": "https://www.tripadvisor.com", "leyenda": "TripAdvisor" }], "telefono": "+59", "comentario": "R", "canton":"q", "parroquia":"S" }');
+$sampleEvento = json_decode('{"calificacion": 4, "titulo": "I", "subtitulo": "Q", "descripcion": "I", "temperatura": "1", "dificultad": "B", "presupuesto": "5$", "fotos": [ "https://appturismo.pichincha.gob.ec/img/1/1.jpg" ], "actividades": [ { "tipo": 1, "leyenda": "Arte" }], "servicios": [ { "tipo": 5, "leyenda": "Alojamiento" }], "links": [ { "tipo": 1, "url": "https://www.tripadvisor.com", "leyenda": "TripAdvisor" }], "telefono": "+59", "comentario": "R", "canton":"q", "parroquia":"S","destinos":[]}');
 
 
 $spreadsheet = \PhpOffice\PhpSpreadsheet\IOFactory::load($_FILES['customFile']['tmp_name']);
@@ -27,8 +27,8 @@ for($i=2; $i<=$nr; $i++){
     $presupuesto=$xls_data[$i]['J'];
     $telefono=$xls_data[$i]['K'];
     $comentario=$xls_data[$i]['L'];
-    $lat=str_replace("(", "", str_replace(")", "", $xls_data[$i]['M']));
-    $lon=str_replace("(", "", str_replace(")", "", $xls_data[$i]['N']));
+    $lat=valNumber(str_replace("(", "", str_replace(")", "", $xls_data[$i]['M'])));
+    $lon=valNumber(str_replace("(", "", str_replace(")", "", $xls_data[$i]['N'])));
     $canton=$xls_data[$i]['O'];
     $parroquia=$xls_data[$i]['P'];
     $actividades=$xls_data[$i]['Q'];
