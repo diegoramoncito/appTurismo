@@ -51,7 +51,7 @@ foreach ($destinos as $elemento) {
     $individual = json_decode($elemento->info);
 ?>
     
-            <tr>
+            <tr <?php if($elemento->activo == 0) echo ' class="table-danger"'; ?>>
               <th scope="row">
                   <a href="detalle.php?id=<?php echo $elemento->id; ?>" class="btn btn-default btn-info" style="text-shadow: none;!important">Editar</a>
                   <!--a href="#" class="btn btn-default btn-danger" style="text-shadow: none;!important">Eliminar</a-->
