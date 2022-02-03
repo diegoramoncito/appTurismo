@@ -104,7 +104,7 @@ for($i=2; $i<=$nr; $i++){
         crudQuery($query);
     }else{
         if($titulo!=""){
-            $query = "insert into destino (tipo,calificacion,titulo,ubicacion,info) values('$tipo', $calificacion,'$titulo',ST_GeomFromText('POINT($lon $lat)', 4326), '$info')";
+            $query = "insert into destino (tipo,calificacion,titulo,ubicacion,info,activo) values('$tipo', $calificacion,'$titulo',ST_GeomFromText('POINT($lon $lat)', 4326), '$info',0)";
             crudQuery($query);
         }
     }

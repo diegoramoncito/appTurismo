@@ -33,6 +33,11 @@ if(!empty($fileNames)){
 }
 if(valNumber($idDestino)>0)
 $elementDestino->fotos = getFilesArray($targetDirectory);
+if(count($elementDestino->fotos)>0){
+    $condition = ", activo = 1 ";
+}else{
+    $condition = "";
+}
 
 
 $id=$idDestino;
@@ -112,7 +117,7 @@ $elementDestino->links = $linkLista;
 $info = json_encode($elementDestino);
 $titulo = strlen($titulo) > 50 ? substr($titulo,0,46)."..." : $titulo;
 if ($idDestino!=""){
-    $query = "update destino set tipo = '$tipo', calificacion = $calificacion, titulo = '$titulo', ubicacion = ST_GeomFromText('POINT($lon $lat)', 4326), info = '$info' where id = $id";
+    $query = "update destino set tipo = '$tipo', calificacion = $calificacion, titulo = '$titulo', ubicacion = ST_GeomFromText('POINT($lon $lat)', 4326), info = '$info' $condition where id = $id";
     crudQuery($query);
     $header = "Location: detalle.php?id=$idDestino";
 }else{
