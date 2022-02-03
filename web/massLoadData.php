@@ -97,6 +97,7 @@ for($i=2; $i<=$nr; $i++){
     $elementDestino->links = $linkLista;
     
     $info = json_encode($elementDestino);
+    $titulo = strlen($titulo) > 50 ? substr($titulo,0,46)."..." : $titulo;
     
     if ($id!=""){
         $query = "update destino set tipo = '$tipo', calificacion = $calificacion, titulo = '$titulo', ubicacion = ST_GeomFromText('POINT($lon $lat)', 4326), info = '$info' where id = $id";
