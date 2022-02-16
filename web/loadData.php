@@ -74,6 +74,9 @@ $elementDestino->telefono=$telefono;
 $elementDestino->comentario=$comentario;
 $elementDestino->canton=$canton;
 $elementDestino->parroquia=$parroquia;
+$elementDestino->lat=$lat;
+$elementDestino->lon=$lon;
+
 
 $actividad = $elementDestino->actividades[0];
 $servicio = $elementDestino->servicios[0];

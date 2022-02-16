@@ -54,6 +54,8 @@ for($i=2; $i<=$nr; $i++){
     $elementDestino->comentario=$comentario;
     $elementDestino->canton=$canton;
     $elementDestino->parroquia=$parroquia;
+    $elementDestino->lat=$lat;
+    $elementDestino->lon=$lon;
     $actividad = $elementDestino->actividades[0];
     $servicio = $elementDestino->servicios[0];
     $link = $elementDestino->links[0];
