@@ -70,11 +70,16 @@
         
         
         function login() {
-            if ($("#username").val() == "admin" && $("#password").val() == "password") {
-                window.location.replace("datos.php");
-            } else {
-                alert("Credenciales incorrectas");
+            cre = JSON.parse('[{"u":"admin","p":"password"}]');
+            for (var i=0; i<cre.length; i++) {
+                if ($("#username").val() == cre[i][u] && $("#password").val() == cre[i][p]) {
+                    window.location.replace("datos.php");
+                } else {
+                    alert("Credenciales incorrectas");
+                }
             }
+            
+            
         }
     </script>
 </html>
