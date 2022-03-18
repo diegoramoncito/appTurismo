@@ -70,14 +70,16 @@
         
         
         function login() {
-            cre = JSON.parse('[{"u":"admin","p":"password"}]');
+            cre = JSON.parse('[{"u":"admin","p":"password"},{"u":"d.espin","p":"ppp1"},{"u":"b.chasipanta","p":"qqq1"},{"u":"j.ponce","p":"ddd1"}]');
             for (var i=0; i<cre.length; i++) {
                 if ($("#username").val() == cre[i][u] && $("#password").val() == cre[i][p]) {
                     window.location.replace("datos.php");
-                } else {
-                    alert("Credenciales incorrectas");
                 }
+                //else {
+                //    alert("Credenciales incorrectas");
+                //}
             }
+            alert("Credenciales incorrectas");
             
             
         }
