@@ -72,7 +72,6 @@ for($i=2; $i<=$nr; $i++){
     $serviciosList = array();
     foreach(explode(",", $servicios) as $act){
         if($act!=""){
-            echo "1";
             $servicio->tipo = getTipo($act);
             $servicio->leyenda = $act;
             array_push($serviciosList, json_decode(json_encode($servicio)));
@@ -80,13 +79,10 @@ for($i=2; $i<=$nr; $i++){
     }
     $elementDestino->servicios = $serviciosList;
     
-    echo "1";
     $linkLista = array();
     $link->tipo=1;
     $link->url=$url1;
-    echo "1";
     $link->leyenda=getUrlLeyenda($url1);
-    echo "2";
     array_push($linkLista,json_decode(json_encode($link)));
     $link->tipo=1;
     $link->url=$url2;
@@ -100,6 +96,14 @@ for($i=2; $i<=$nr; $i++){
     
     $info = json_encode($elementDestino);
     $titulo = strlen($titulo) > 50 ? substr($titulo,0,46)."..." : $titulo;
+    //Obtener id si existe
+    if ($id==""){
+        $result = json_decode(query("select id from destino where titulo like '$titulo'"));
+        foreach($result as $el){
+            $id = $el->id;
+        }
+    }
+    echo "$titulo<br>";
     
     if ($id!=""){
         $query = "update destino set tipo = '$tipo', calificacion = $calificacion, titulo = '$titulo', ubicacion = ST_GeomFromText('POINT($lon $lat)', 4326), info = '$info' where id = $id";
