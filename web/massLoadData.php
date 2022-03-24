@@ -49,8 +49,8 @@ for($i=2; $i<=$nr; $i++){
     $elementDestino->descripcion=$descripcion;
     $elementDestino->temperatura=$temperatura;
     $elementDestino->dificultad=$dificultad;
-    $elementDestino->presupuesto=$presupuesto;
-    $elementDestino->telefono=$telefono;
+    $elementDestino->presupuesto=$presupuesto ?? '??';
+    $elementDestino->telefono=clean($telefono) ?? ' ';
     $elementDestino->comentario=$comentario;
     $elementDestino->canton=$canton;
     $elementDestino->parroquia=$parroquia;
