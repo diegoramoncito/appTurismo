@@ -83,15 +83,21 @@ for($i=2; $i<=$nr; $i++){
     $link->tipo=1;
     $link->url=$url1;
     $link->leyenda=getUrlLeyenda($url1);
-    array_push($linkLista,json_decode(json_encode($link)));
+    if ($url1 != null || $url1 != ""){
+        array_push($linkLista,json_decode(json_encode($link)));
+    }
     $link->tipo=1;
     $link->url=$url2;
     $link->leyenda=getUrlLeyenda($url2);
-    array_push($linkLista,json_decode(json_encode($link)));
+    if ($url1 != null || $url1 != ""){
+        array_push($linkLista,json_decode(json_encode($link)));
+    }
     $link->tipo=1;
     $link->url=$url3;
     $link->leyenda=getUrlLeyenda($url3);
-    array_push($linkLista,json_decode(json_encode($link)));
+    if ($url1 != null || $url1 != ""){
+        array_push($linkLista,json_decode(json_encode($link)));
+    }
     $elementDestino->links = $linkLista;
     
     $info = json_encode($elementDestino);
