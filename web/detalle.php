@@ -82,13 +82,13 @@ if(isset($_GET['id']) && $_GET['id'] != ""){
 <div class="col-md-4">
    <label for="latitud" class="col-sm-2 col-form-label">Latitud</label>
    <div class="col-sm-10">
-      <input type="text" class="form-control" id="latitud" name="latitud" placeholder="0.0012" value="<?php echo $lon; ?>">
+      <input type="text" class="form-control" id="latitud" name="latitud" placeholder="0.0012" value="<?php echo $lat; ?>">
    </div>
 </div>
 <div class="col-md-4">
    <label for="longitud" class="col-sm-2 col-form-label">Longitud</label>
    <div class="col-sm-10">
-      <input type="text" class="form-control" id="longitud" name="longitud" placeholder="-73.5432" value="<?php echo $lat; ?>">
+      <input type="text" class="form-control" id="longitud" name="longitud" placeholder="-73.5432" value="<?php echo $lon; ?>">
    </div>
 </div>
       <div class="col-md-4">

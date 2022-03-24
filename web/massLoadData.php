@@ -106,6 +106,9 @@ for($i=2; $i<=$nr; $i++){
     echo "$titulo<br>";
     
     if ($id!=""){
+        $targetDirectory = "img/".$id."/";
+        $elementDestino->fotos = getFilesArray($targetDirectory);
+        $info = json_encode($elementDestino);
         $query = "update destino set tipo = '$tipo', calificacion = $calificacion, titulo = '$titulo', ubicacion = ST_GeomFromText('POINT($lon $lat)', 4326), info = '$info' where id = $id";
         crudQuery($query);
     }else{
