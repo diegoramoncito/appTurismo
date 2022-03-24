@@ -25,7 +25,7 @@ for($i=2; $i<=$nr; $i++){
     $temperatura=$xls_data[$i]['H'];
     $dificultad=$xls_data[$i]['I'];
     $presupuesto=$xls_data[$i]['J'];
-    $telefono=$xls_data[$i]['K'];
+    $telefono=clean($xls_data[$i]['K']);
     $comentario=$xls_data[$i]['L'];
     $lat=valNumber(str_replace("(", "", str_replace(")", "", $xls_data[$i]['M'])));
     $lon=valNumber(str_replace("(", "", str_replace(")", "", $xls_data[$i]['N'])));
@@ -48,9 +48,9 @@ for($i=2; $i<=$nr; $i++){
     $elementDestino->subtitulo=$subtitulo;
     $elementDestino->descripcion=$descripcion;
     $elementDestino->temperatura=$temperatura;
-    $elementDestino->dificultad=$dificultad;
+    $elementDestino->dificultad=$dificultad ?? '??';
     $elementDestino->presupuesto=$presupuesto ?? '??';
-    $elementDestino->telefono=clean($telefono) ?? ' ';
+    $elementDestino->telefono=$telefono ?? ' ';
     $elementDestino->comentario=$comentario;
     $elementDestino->canton=$canton;
     $elementDestino->parroquia=$parroquia;
