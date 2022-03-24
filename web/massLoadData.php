@@ -20,7 +20,7 @@ for($i=2; $i<=$nr; $i++){
     $relacionadas=$xls_data[$i]['C'];
     $calificacion=$xls_data[$i]['D'];
     $titulo=$xls_data[$i]['E'];
-    $subtitulo=$xls_data[$i]['F'];
+    $subtitulo=$xls_data[$i]['F'] ?? ' ';
     $descripcion=$xls_data[$i]['G'];
     $temperatura=$xls_data[$i]['H'];
     $dificultad=$xls_data[$i]['I'];
