@@ -19,7 +19,7 @@ $ev = array();
 foreach($eventos as $elem){
     $actual = json_decode($elem->info);
     $actual->id = intval($elem->id);
-    array_push($parroquia,json_decode(json_encode($actual)));
+    array_push($ev,json_decode(json_encode($actual)));
 }
 
 $resultado->eventos = $ev;
@@ -38,7 +38,7 @@ foreach($recomendados as $elem){
     }
     if(!in_array($actual->parroquia, $parroquia)){
         if(!empty(trim($actual->parroquia)))
-            array_push($categoria,$actual->parroquia);
+            array_push($parroquia,$actual->parroquia);
     }
     array_push($re,json_decode(json_encode($actual)));
 }
