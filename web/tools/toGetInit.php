@@ -19,7 +19,15 @@ $ev = array();
 foreach($eventos as $elem){
     $actual = json_decode($elem->info);
     $actual->id = intval($elem->id);
-    
+    array_push($parroquia,json_decode(json_encode($actual)));
+}
+
+$resultado->eventos = $ev;
+
+$re = array();
+foreach($recomendados as $elem){
+    $actual = json_decode($elem->info);
+    $actual->id = intval($elem->id);
     if(!in_array($actual->subtitulo, $categoria)){
         if(!empty(trim($actual->subtitulo)))
             array_push($categoria,$actual->subtitulo);
@@ -32,15 +40,6 @@ foreach($eventos as $elem){
         if(!empty(trim($actual->parroquia)))
             array_push($categoria,$actual->parroquia);
     }
-    array_push($parroquia,json_decode(json_encode($actual)));
-}
-
-$resultado->eventos = $ev;
-
-$re = array();
-foreach($recomendados as $elem){
-    $actual = json_decode($elem->info);
-    $actual->id = intval($elem->id);
     array_push($re,json_decode(json_encode($actual)));
 }
 
