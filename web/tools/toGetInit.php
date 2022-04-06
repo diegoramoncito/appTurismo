@@ -9,14 +9,30 @@ $elementDestino = json_decode('{"calificacion": 4, "titulo": "Iglesia San Franci
 $eventos = json_decode(query("select * from destino where tipo = 'Ruta' and activo = 1"));
 $recomendados = json_decode(query("select * from destino where tipo = 'Destino' and activo = 1"));
 $busquedas = json_decode(query("select * from destino where tipo = 'Destino' and activo = 1"));
+$categoria = array();
+$canton = array();
+$parroquia = array();
 
-$resultado = json_decode('{"eventos":[],"recomendados":[],"buscados":[]}');
+$resultado = json_decode('{"eventos":[],"recomendados":[],"buscados":[],"categoria":[],"canton":[],"parroquia":[]}');
 
 $ev = array();
 foreach($eventos as $elem){
     $actual = json_decode($elem->info);
     $actual->id = intval($elem->id);
-    array_push($ev,json_decode(json_encode($actual)));
+    
+    if(!in_array($actual->subtitulo, $categoria)){
+        if(!empty(trim($actual->subtitulo)))
+            array_push($categoria,$actual->subtitulo);
+    }
+    if(!in_array($actual->canton, $canton)){
+        if(!empty(trim($actual->canton)))
+            array_push($canton,$actual->canton);
+    }
+    if(!in_array($actual->parroquia, $parroquia)){
+        if(!empty(trim($actual->parroquia)))
+            array_push($categoria,$actual->parroquia);
+    }
+    array_push($parroquia,json_decode(json_encode($actual)));
 }
 
 $resultado->eventos = $ev;
@@ -38,6 +54,9 @@ foreach($busquedas as $elem){
 }
 
 $resultado->buscados = $bu;
+$resultado->categoria = $categoria;
+$resultado->canton = $canton;
+$resultado->parroquia = $parroquia;
 
 echo json_encode($resultado);
 
