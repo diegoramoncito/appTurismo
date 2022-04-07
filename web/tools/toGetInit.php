@@ -60,6 +60,7 @@ $resultado->buscados = $bu;
 $resultado->categoria = $categoria;
 $resultado->canton = $canton;
 $resultado->parroquia = $parroquia;
+$resultado->headers = json_encode($headers);
 
 echo json_encode($resultado);
 
