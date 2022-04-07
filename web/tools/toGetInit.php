@@ -7,10 +7,11 @@ require_once("toConn.php");
 //Busqueda
 $where = "";
 $headers = getallheaders();
-$bTitulo = str_replace('ñ','%',trim($headers["titulo"]));
-$bTipo = str_replace('ñ','%',trim($headers["tipo"]));
-$bCanton = str_replace('ñ','%',trim($headers["canton"]));
-$bParroquia = str_replace('ñ','%',trim($headers["parroquia"]));
+$especiales = array("ñ", "á", "é", "í", "ó", "ú");
+$bTitulo = str_replace($especiales,"%",strtolower(trim($headers["titulo"])));
+$bTipo = str_replace($especiales,"%",strtolower(trim($headers["tipo"])));
+$bCanton = str_replace($especiales,"%",strtolower(trim($headers["canton"])));
+$bParroquia = str_replace($especiales,"%",strtolower(trim($headers["parroquia"])));
 
 if (!empty($bTitulo)){
     $where .= " and LOWER(info->>'titulo') like LOWER('%$bTitulo%')";
