@@ -7,10 +7,10 @@ require_once("toConn.php");
 //Busqueda
 $where = "";
 $headers = getallheaders();
-$bTitulo = trim($headers["titulo"]);
-$bTipo = trim($headers["tipo"]);
-$bCanton = trim($headers["canton"]);
-$bParroquia = trim($headers["parroquia"]);
+$bTitulo = str_replace('ñ','%',trim($headers["titulo"]));
+$bTipo = str_replace('ñ','%',trim($headers["tipo"]));
+$bCanton = str_replace('ñ','%',trim($headers["canton"]));
+$bParroquia = str_replace('ñ','%',trim($headers["parroquia"]));
 
 if (!empty($bTitulo)){
     $where .= " and LOWER(info->>'titulo') like LOWER('%$bTitulo%')";
@@ -26,7 +26,7 @@ if (!empty($bParroquia)){
 }
 //if (!empty($bTitulo)){
 //    $where .= " and LOWER(info->>'titulo') like LOWER('%$bTitulo%')";
-//}
+//}ñ
 
 $elementDestino = json_decode('{"calificacion": 4, "titulo": "Iglesia San Francisco", "subtitulo": "Quito", "descripcion": "Iglesia de La Iglesia de San Francisco es una basílica católica que se levanta en medio del centro histórico de Quito, frente a la plaza del mismo nombre. La estructura es el conjunto arquitectónico de mayor dimensión dentro de los centros históricos de toda América, y por ello es conocido como el Escorial del Nuevo Mundo", "temperatura": "14ºC", "dificultad": "Baja", "presupuesto": "5$", "fotos": [ "https://www.quito-turismo.gob.ec/wp-content/uploads/2021/04/02_04-EL-UNIVERSO-2-1-1024x378.jpg" ], "actividades": [ { "tipo": 1, "leyenda": "Arte y arquitectura" }, { "tipo": 2, "leyenda": "Gastronomía" }, { "tipo": 3, "leyenda": "Ciclismo" } ], "servicios": [ { "tipo": 5, "leyenda": "Alojamiento" }, { "tipo": 6, "leyenda": "Parqueo" } ], "links": [ { "tipo": 1, "url": "https://www.tripadvisor.com", "leyenda": "TripAdvisor" }, { "tipo": 1, "url": "https://www.booking.com", "leyenda": "TripAdvisor" }, { "tipo": 1, "url": "https://www.wikiloc.com", "leyenda": "TripAdvisor" } ], "telefono": "+5939000000001", "comentario": "Ruta 56km 49", "canton":"quito", "parroquia":"San antonio" }');
 
