@@ -12,7 +12,7 @@ $elementDestino = json_decode('{"calificacion": 4, "titulo": "Iglesia San Franci
 
 $eventos = json_decode(query("select * from destino where tipo = 'Ruta' and activo = 1"));
 $recomendados = json_decode(query("select * from destino where tipo = 'Destino' and activo = 1"));
-$busquedas = json_decode(query("select * from destino where tipo = 'Destino' and activo = 1 and titulo like '%cayamb%'"));
+$busquedas = json_decode(query("select * from destino where titulo like '%cayamb%' and tipo = 'Destino' and activo = 1"));
 $categoria = array();
 $canton = array();
 $parroquia = array();
