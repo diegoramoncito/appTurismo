@@ -16,13 +16,13 @@ if (!empty($bTitulo)){
     $where .= " and LOWER(info->>'titulo') like LOWER('%$bTitulo%')";
 }
 if (!empty($bTipo)){
-    $where .= " and LOWER(info->>'subtitulo') = LOWER('%$bTipo%')";
+    $where .= " and LOWER(info->>'subtitulo') like LOWER('%$bTipo%')";
 }
 if (!empty($bCanton)){
-    $where .= " and LOWER(info->>'canton') = LOWER('%$bCanton%')";
+    $where .= " and LOWER(info->>'canton') like LOWER('%$bCanton%')";
 }
 if (!empty($bParroquia)){
-    $where .= " and LOWER(info->>'parroquia') = LOWER('%$bParroquia%')";
+    $where .= " and LOWER(info->>'parroquia') like LOWER('%$bParroquia%')";
 }
 //if (!empty($bTitulo)){
 //    $where .= " and LOWER(info->>'titulo') like LOWER('%$bTitulo%')";
