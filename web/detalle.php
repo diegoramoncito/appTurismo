@@ -184,7 +184,7 @@ if(isset($_GET['id']) && $_GET['id'] != ""){
 <?php } ?>
 </div>
 
-      </div></div>
+      </div></div><br /><br /><br />
     </body>
     
 </html>
