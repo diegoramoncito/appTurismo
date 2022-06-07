@@ -5,7 +5,7 @@ require_once("tools/toConn.php");
 
 $idDestino = $_GET['id'];
 if($idDestino!=""){
-    $query = "update destino set activo = 0 where id = $id";
+    $query = "update destino set activo = 0 where id = $idDestino";
     crudQuery($query);
 }
 
